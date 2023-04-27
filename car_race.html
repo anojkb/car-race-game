@@ -13,8 +13,23 @@
             height: 70px; 
             background: red;
             position: absolute;
-            left: 50px; 
-            top: 400px; 
+            /* left: 50px;  */
+            /* top: 400px;  */
+            bottom: 100px;
+        }
+        .gameArea{
+            width:400px;
+            height:100vh;
+            background: #2c3e50;
+            margin: auto;
+            position: relative;
+        }
+        .line{
+            width:10px;
+            height: 100px;
+            position:absolute;
+            background: red;
+            margin-left: 195px;
         }
     </style>
 </head>
@@ -57,11 +72,12 @@
 
         function gamePlay(){
             let car = document.querySelector('.car');
+            let road = gameArea.getBoundingClientRect();
             if(player.start){
-                if(keys.ArrowUp){ player.y -= player.speed;}
-                if(keys.ArrowDown){player.y += player.speed;}
-                if(keys.ArrowLeft){player.x -= player.speed;}
-                if(keys.ArrowRight){player.x += player.speed;}
+                if(keys.ArrowUp && player.y > road.top + 70){ player.y -= player.speed;}
+                if(keys.ArrowDown && player.y < (road.bottom - 80) ){player.y += player.speed;}
+                if(keys.ArrowLeft && player.x > 0){player.x -= player.speed;}
+                if(keys.ArrowRight && player.x < (road.width - 53)){player.x += player.speed;}
                 car.style.top = player.y + "px";
                 car.style.left = player.x + "px";
                 window.requestAnimationFrame(gamePlay);
@@ -79,6 +95,8 @@
             player.x = car.offsetLeft;
             player.y = car.offsetTop;
             window.requestAnimationFrame(gamePlay);
+            let roadLine  = document.createElement('div');
+            roadLine.setAttribute('class','line');
         }
     </script>
     
