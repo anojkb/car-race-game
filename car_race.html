@@ -47,46 +47,24 @@
         document.addEventListener('keydown',keyDown);
         document.addEventListener('keyup',keyUp); 
         function keyDown(e){
-            // e.preventDefault();
-            // keys[e.key]  = true;
-            // console.log("down:"+e.key);
-            // console.log("true::"+JSON.stringify(keys));
-            // window.requestAnimationFrame(gamePlay);
-           if( ["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e) > -1){
             e.preventDefault();
             keys[e.key]  = true;
-           }
-         
         }
         function keyUp(e){
             e.preventDefault();
             keys[e.key]  = false;
-            // if( ["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1){
-            // e.preventDefault();
-            // keys[e.key]  = true;
-            // console.log("up:"+e.key);
-        //    }
-
-        //    if(player.start){
-        //     gamePlay();
-        //    }
-
-
         }
 
         function gamePlay(){
-            // console.log("hi clicked");
             let car = document.querySelector('.car');
             if(player.start){
-                console.log("player ready");
-                console.log("keys.ArrowUp::"+keys.ArrowUp);
                 if(keys.ArrowUp){ player.y -= player.speed;}
                 if(keys.ArrowDown){player.y += player.speed;}
                 if(keys.ArrowLeft){player.x -= player.speed;}
                 if(keys.ArrowRight){player.x += player.speed;}
                 car.style.top = player.y + "px";
                 car.style.left = player.x + "px";
-                 window.requestAnimationFrame(gamePlay);
+                window.requestAnimationFrame(gamePlay);
             }
         }
         function start(){
@@ -99,10 +77,7 @@
             // car.innerText ="Hey I am car";
             gameArea.appendChild(car);
             player.x = car.offsetLeft;
-            console.log(player.x);
             player.y = car.offsetTop;
-            console.log("top::"+ car.offsetTop);
-            console.log("left::"+ car.offsetLeft);
             window.requestAnimationFrame(gamePlay);
         }
     </script>
